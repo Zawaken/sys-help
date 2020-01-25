@@ -22,3 +22,20 @@ git fetch upstream
 git pull upstream master
 git push origin master
 ```
+
+
+### Keymaps
+
+#### Stop linux from changing keymap when you unplug and replug keyboard.
+`sudo vim /etc/X11/xorg.conf.d/11-usb-keyboard.conf`
+
+##### I don't think the name of the file matters much, the content matters much more I would think.
+
+```
+Section "InputClass"
+    Identifier         "Keyboard Defaults"
+    MatchIsKeyboard	   "yes"
+    MatchProduct       "keyboard"
+    Option  "XkbLayout"  "no"
+EndSection
+```
