@@ -29,7 +29,7 @@ git push origin master
 sudo udevadm control --reload-rules
 sudo udevadm trigger
 ```
-##### For olkb keyboards I am fairly certain `/etc/udev/rules.d/56-dfu-util.rules` the only file needed.
+##### For olkb keyboards I am fairly certain `/etc/udev/rules.d/56-dfu-util.rules` is the only file needed.
 ```
 # stm32duino
 SUBSYSTEMS=="usb", ATTRS{idVendor}=="1eaf", ATTRS{idProduct}=="0003", MODE:="0666"
