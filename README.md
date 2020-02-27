@@ -29,14 +29,12 @@ git push origin master
 sudo udevadm control --reload-rules
 sudo udevadm trigger
 ```
-##### For olkb keyboards I am fairly certain `/etc/udev/rules.d/50-atmel-dfu.rules` is the only file needed.
+##### For olkb keyboards I am fairly certain `/etc/udev/rules.d/56-dfu-util.rules` the only file needed.
 ```
-# Atmel ATMega32U4
-SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ff4", MODE:="0666"
-# Atmel USBKEY AT90USB1287
-SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ffb", MODE:="0666"
-# Atmel ATMega32U2
-SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ff0", MODE:="0666"
+# stm32duino
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="1eaf", ATTRS{idProduct}=="0003", MODE:="0666"
+# Generic stm32
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE:="0666"
 ```
 
 ### Keymaps
