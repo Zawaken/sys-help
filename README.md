@@ -22,6 +22,7 @@ git fetch upstream
 git pull upstream master
 git push origin master
 ```
+All of the qmk info above will be fixed with my qmk_keymaps repo is ready.
 
 #### Building qmk keymaps without sudo doesn't work
 ##### add the udev rules listed [here](https://docs.qmk.fm/#/faq_build?id=linux-udev-rules), then run this:
@@ -29,7 +30,17 @@ git push origin master
 sudo udevadm control --reload-rules
 sudo udevadm trigger
 ```
-##### For olkb keyboards I am fairly certain `/etc/udev/rules.d/56-dfu-util.rules` is the only file needed.
+##### For ATMega32u4 keyboards like the viterbi, `/etc/udev/rules.d/50-atmel-dfu.rules` is needed.
+```
+# Atmel ATMega32U4
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ff4", MODE:="0666"
+# Atmel USBKEY AT90USB1287
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ffb", MODE:="0666"
+# Atmel ATMega32U2
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ff0", MODE:="0666"
+```
+
+##### For olkb keyboards, `/etc/udev/rules.d/56-dfu-util.rules` is needed.
 ```
 # stm32duino
 SUBSYSTEMS=="usb", ATTRS{idVendor}=="1eaf", ATTRS{idProduct}=="0003", MODE:="0666"
