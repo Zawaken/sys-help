@@ -39,3 +39,14 @@ Section "InputClass"
     Option  "XkbLayout"  "no"
 EndSection
 ```
+
+### Games
+
+#### World of Warcraft
+
+##### Streaming error occured (WOW51900322).
+Download the [Windows WOW cache](https://github.com/1thumbbmcc/wowcache/blob/master/Cache.zip) ([Source](https://forums.lutris.net/t/world-of-warcraft-streaming-error/2322))
+Go to the directory you've installed World of warcraft. (for me it was ~/Games/world-of-warcraft/drive_c/Program Files (x86)/World of Warcraft/_retail_)
+Delete the "Cache" folder.
+Unzip the Cache.zip file into the _retail_ directory.
+
