@@ -11,7 +11,7 @@
 #### If qmk keymaps won't compile on arch because of a too new version of arm-none-eabi-gcc
 `pacman -U https://archive.archlinux.org/packages/a/arm-none-eabi-gcc/arm-none-eabi-gcc-8.3.0-1-x86_64.pkg.tar.xz`
 
-#### Could also use docker if this is an issue.
+#### Could also use docker if this is an issue. Have had to do this on Void Linux and Fedora.
 `example: sudo util/docker_build.sh planck/rev6:zawaken:flash`
 
 #### Upgrading qmk fork from upstream
@@ -22,7 +22,31 @@ git fetch upstream
 git pull upstream master
 git push origin master
 ```
+All of the qmk info above will be fixed with my qmk_keymaps repo is ready.
 
+#### Building qmk keymaps without sudo doesn't work
+##### add the udev rules listed [here](https://docs.qmk.fm/#/faq_build?id=linux-udev-rules), then run this:
+```
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+```
+##### For ATMega32u4 keyboards like the viterbi, `/etc/udev/rules.d/50-atmel-dfu.rules` is needed.
+```
+# Atmel ATMega32U4
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ff4", MODE:="0666"
+# Atmel USBKEY AT90USB1287
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ffb", MODE:="0666"
+# Atmel ATMega32U2
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ff0", MODE:="0666"
+```
+
+##### For olkb keyboards, `/etc/udev/rules.d/56-dfu-util.rules` is needed.
+```
+# stm32duino
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="1eaf", ATTRS{idProduct}=="0003", MODE:="0666"
+# Generic stm32
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE:="0666"
+```
 
 ### Keymaps
 
