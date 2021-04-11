@@ -22,7 +22,7 @@ git fetch upstream
 git pull upstream master
 git push origin master
 ```
-All of the qmk info above will be fixed with my qmk_keymaps repo is ready.
+
 
 #### Building qmk keymaps without sudo doesn't work
 ##### add the udev rules listed [here](https://docs.qmk.fm/#/faq_build?id=linux-udev-rules), then run this:
@@ -51,7 +51,8 @@ SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE:="066
 ### Keymaps
 
 #### Stop linux from changing keymap when you unplug and replug keyboard.
-`sudo vim /etc/X11/xorg.conf.d/11-usb-keyboard.conf`
+`sudo vim /etc/X11/xorg.conf.d/11-usb-keyboard.conf` (non-systemd)
+`sudo vim /etc/X11/xorg.conf.d/00-keyboard.conf` (systemd)
 
 ##### I don't think the name of the file matters much, the content matters much more I would think.
 
@@ -70,7 +71,16 @@ EndSection
 
 ##### Streaming error occured (WOW51900322).
 Download the [Windows WOW cache](https://github.com/1thumbbmcc/wowcache/blob/master/Cache.zip) ([Source](https://forums.lutris.net/t/world-of-warcraft-streaming-error/2322))
-Go to the directory you've installed World of warcraft. (for me it was ~/Games/world-of-warcraft/drive_c/Program Files (x86)/World of Warcraft/_retail_)
+Go to the directory you've installed World of warcraft. (for me it was `~/Games/world-of-warcraft/drive_c/Program Files (x86)/World of Warcraft/_retail_`)
 Delete the "Cache" folder.
-Unzip the Cache.zip file into the _retail_ directory.
+Unzip the Cache.zip file into the `_retail_` directory.
 
+### Homelab
+
+#### Idrac autonegotiation
+##### [Here](https://www.bvanleeuwen.nl/faq/?p=1120) is the source
+
+`racadm getconfig -g cfgNetTuning`
+If cfgNetTuningNicAutoneg is 1, then run these commands:
+`racadm config -g cfgNetTuning -o cfgNetTuningNicAutoneg 0`
+`racadm racreset`
