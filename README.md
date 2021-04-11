@@ -81,6 +81,9 @@ Unzip the Cache.zip file into the `_retail_` directory.
 ##### [Here](https://www.bvanleeuwen.nl/faq/?p=1120) is the source
 
 `racadm getconfig -g cfgNetTuning`
+
 If cfgNetTuningNicAutoneg is 1, then run these commands:
+
 `racadm config -g cfgNetTuning -o cfgNetTuningNicAutoneg 0`
+
 `racadm racreset`
