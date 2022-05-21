@@ -33,11 +33,13 @@ sudo udevadm trigger
 ##### For ATMega32u4 keyboards like the viterbi, `/etc/udev/rules.d/50-atmel-dfu.rules` is needed.
 ```
 # Atmel ATMega32U4
-SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ff4", MODE:="0666"
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ff4", TAG+="uaccess"
 # Atmel USBKEY AT90USB1287
-SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ffb", MODE:="0666"
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ffb", TAG+="uaccess"
 # Atmel ATMega32U2
-SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ff0", MODE:="0666"
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="2ff0", TAG+="uaccess"
+# Atmel ATMega328p / USBAspLoader
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="05dc", TAG+="uaccess"
 ```
 
 ##### For olkb keyboards, `/etc/udev/rules.d/56-dfu-util.rules` is needed.
